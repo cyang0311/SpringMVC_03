@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.MenuMapper">
+    <resultMap id="mymap" type="menu">
+        <id property="id" column="id"></id>
+        <collection property="children" select="mapper.MenuMapper.sleByPid" column="id"></collection>
+    </resultMap>
+    <select id="sleByPid" parameterType="int" resultMap="mymap">
+        select * from menu where pid=#{0}
+    </select>
+
+</mapper>
